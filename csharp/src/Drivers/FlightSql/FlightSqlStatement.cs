@@ -18,6 +18,8 @@
 using System;
 using System.Threading.Tasks;
 using Apache.Arrow.Flight;
+using Arrow.Flight.Protocol.Sql;
+using Google.Protobuf;
 using Grpc.Core;
 
 namespace Apache.Arrow.Adbc.Drivers.FlightSql
@@ -59,7 +61,8 @@ namespace Apache.Arrow.Adbc.Drivers.FlightSql
             if (_flightSqlConnection.FlightClient == null)
                 throw new ArgumentNullException(nameof(_flightSqlConnection.FlightClient));
 
-            FlightDescriptor commandDescripter = FlightDescriptor.CreateCommandDescriptor(query);
+            var commandStatementQuery = new CommandStatementQuery() { Query = query };
+            FlightDescriptor commandDescripter = FlightDescriptor.CreateCommandDescriptor(commandStatementQuery.ToByteString().ToByteArray());
 
             return await _flightSqlConnection.FlightClient.GetInfo(commandDescripter, headers).ResponseAsync;
         }

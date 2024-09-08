@@ -9,4 +9,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Apache.Arrow.Adbc\Apache.Arrow.Adbc.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="..\..\..\..\..\arrow\format\FlightSql.proto" Access="public" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Grpc.Tools" Version="2.66.0" PrivateAssets="All" />
+  </ItemGroup>
 </Project>
