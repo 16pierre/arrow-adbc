@@ -54,7 +54,9 @@ namespace Apache.Arrow.Adbc.Drivers.FlightSql
 
         public override UpdateResult ExecuteUpdate()
         {
-            throw new NotImplementedException();
+            // TODO(fleche): Properly handle FlightSQL update protocol
+            // HACK - this assumes that the FlightSQL server perform the update upon initial request, and simply returns RowCount
+            return new UpdateResult(ExecuteQueryAsync().Result.RowCount);
         }
 
         public async ValueTask<FlightInfo> GetInfo(string query, Metadata headers)
