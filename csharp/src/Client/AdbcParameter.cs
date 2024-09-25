@@ -40,14 +40,14 @@ namespace Apache.Arrow.Adbc.Client
         [AllowNull]
 #endif
         public override string ParameterName { get; set; } = string.Empty;
-        public override int Size { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override int Size { get; set; }
 #if NET5_0_OR_GREATER
         [AllowNull]
 #endif
-        public override string SourceColumn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override bool SourceColumnNullMapping { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override string SourceColumn { get; set; } = string.Empty;
+        public override bool SourceColumnNullMapping { get; set; }
         public override object? Value { get; set; }
 
-        public override void ResetDbType() => throw new NotImplementedException();
+        public override void ResetDbType() {}
     }
 }
